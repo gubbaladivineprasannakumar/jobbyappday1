@@ -1,0 +1,19 @@
+.not-found-img {
+  height: 350px;
+  width: 400px;
+}
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+}
+.not-found-head {
+  color: aliceblue;
+}
+.not-found-para {
+  color: aliceblue;
+}
