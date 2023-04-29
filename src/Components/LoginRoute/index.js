@@ -31,7 +31,6 @@ class LoginRoute extends Component {
   }
 
   onSubmitFailure = errMsg => {
-    console.log(errMsg)
     this.setState({showSubmitError: true, errMsg})
   }
 
@@ -46,7 +45,6 @@ class LoginRoute extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(data)
     if (response.ok) {
       this.onSubmitSuccess(data.jwt_token)
     } else {
