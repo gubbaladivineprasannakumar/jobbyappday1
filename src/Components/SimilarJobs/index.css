@@ -1,0 +1,38 @@
+.similar-item {
+  height: 450px;
+  width: 400px;
+  background-color: #272727;
+  border-radius: 12px;
+  margin-right: 50px;
+  padding: 20px;
+}
+.similar-logo {
+  height: 50px;
+  width: 50px;
+  margin-left: 3px;
+  margin-right: 20px;
+}
+
+.image-title-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.similar-title {
+  font-size: medium;
+}
+.rating-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 0px;
+}
+.similar-head {
+  font-size: larger;
+}
+.similar-para {
+  font-size: medium;
+}
+.similar-rating {
+  margin-left: 4px;
+}

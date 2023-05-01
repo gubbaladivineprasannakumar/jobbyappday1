@@ -3,6 +3,7 @@ import {Route, Switch, Redirect} from 'react-router-dom'
 import LoginRoute from './Components/LoginRoute'
 import HomeRoute from './Components/HomeRoute'
 import JobsRoute from './Components/JobsRoute'
+import JobDetails from './Components/JobDetails'
 import NotFound from './Components/NotFound'
 
 import './App.css'
@@ -15,6 +16,7 @@ const App = () => (
     <Route exact path="/login" component={LoginRoute} />
     <Route exact path="/" component={HomeRoute} />
     <Route exact path="/jobs" component={JobsRoute} />
+    <Route exact path="/jobs/:id" component={JobDetails} />
     <Route path="/not-found" component={NotFound} />
     <Redirect to="not-found" />
   </Switch>

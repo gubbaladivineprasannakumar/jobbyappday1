@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {BsSearch} from 'react-icons/bs'
-import {Loader} from 'react-loader-spinner'
+import {Redirect} from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import Profile from '../Profile'
 import JobCard from '../JobCard'
@@ -53,6 +54,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
   success: 'SUCCESS',
   failure: 'FAILURE',
+  noJobs: 'NOJOBS',
 }
 
 class JobsRoute extends Component {
@@ -82,9 +84,9 @@ class JobsRoute extends Component {
     )
   }
 
-  keyFunction = event => {
+  keyFunction = keydown => {
     const {searchValue} = this.state
-    if (event.keydown === 'Enter') {
+    if (keydown.key === 'Enter') {
       this.setState({searchInput: searchValue}, this.getJobProfiles)
     }
   }
@@ -124,10 +126,15 @@ class JobsRoute extends Component {
         rating: eachItem.rating,
         title: eachItem.title,
       }))
-      this.setState({
-        jobProfiles: formattedData,
-        apiStatus: apiStatusConstants.success,
-      })
+      console.log(formattedData.length)
+      if (formattedData.length === 0) {
+        this.setState({apiStatus: apiStatusConstants.noJobs})
+      } else {
+        this.setState({
+          jobProfiles: formattedData,
+          apiStatus: apiStatusConstants.success,
+        })
+      }
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
@@ -136,6 +143,18 @@ class JobsRoute extends Component {
   renderLoaderView = () => (
     <div className="loader-container" data-testid="loader">
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
+    </div>
+  )
+
+  noJobsView = () => (
+    <div className="api-failure-container">
+      <img
+        alt="no jobs"
+        className="failure-view"
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png "
+      />
+      <h1>No Jobs Found</h1>
+      <p>We could not find any jobs. Try other filters</p>
     </div>
   )
 
@@ -181,6 +200,8 @@ class JobsRoute extends Component {
         return this.renderApiFailureView()
       case apiStatusConstants.inProgress:
         return this.renderLoaderView()
+      case apiStatusConstants.noJobs:
+        return this.noJobsView()
       default:
         return null
     }
@@ -188,6 +209,10 @@ class JobsRoute extends Component {
 
   render() {
     const {searchValue, jobProfiles} = this.state
+    const jwtToken = Cookies.get('jwt_token')
+    if (jwtToken === undefined) {
+      return <Redirect to="/login" />
+    }
     console.log(jobProfiles)
     return (
       <>
@@ -225,7 +250,7 @@ class JobsRoute extends Component {
                 type="search"
                 value={searchValue}
                 placeholder="Search"
-                onClick={this.keyFunction}
+                onKeyDown={this.keyFunction}
                 onChange={this.onChangeSearchInput}
               />
               <button

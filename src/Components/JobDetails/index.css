@@ -1,11 +1,23 @@
-.job-card-item {
+.job-item-details-container {
+  background-color: black;
+  height: 2000px;
+  width: 100%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.job-card-item-container {
   margin-bottom: 100px;
   background-color: #272727;
-  height: 350px;
-  width: 800px;
+  height: 1000px;
+  width: 1000px;
   border-radius: 10px;
   padding: 10px;
   padding-bottom: 10px;
+  border-radius: 10px;
+  margin-top: 80px;
+  margin-bottom: 100px;
 }
 .company-logo-details {
   display: flex;
@@ -68,6 +80,49 @@
 .description-head {
   font-size: large;
 }
-.job-card-link {
-  text-decoration: none;
+.description-link-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.anchor-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.skills-container {
+  display: flex;
+  flex-direction: column;
+}
+.skills-head {
+  font-size: large;
+}
+.skills-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.life-container {
+  display: flex;
+  flex-direction: column;
+}
+.life-content-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.similar-jobs-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.similar-list-container {
+  display: flex;
+  flex-direction: row;
+}
+.similar {
+  margin-top: 100px;
 }
